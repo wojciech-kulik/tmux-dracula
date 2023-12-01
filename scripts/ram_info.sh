@@ -21,10 +21,10 @@ get_ratio()
       used_mem=$(vm_stat | grep ' active\|wired ' | sed 's/[^0-9]//g' | paste -sd ' ' - | awk -v pagesize=$(pagesize) '{printf "%d\n", ($1+$2) * pagesize / 1048576}')
       total_mem=$(system_profiler SPHardwareDataType | grep "Memory:" | awk '{print $2 $3}')
       if ((used_mem < 1024 )); then
-        echo "${used_mem}MB/$total_mem"
+        echo "${used_mem}MB"
       else
         memory=$((used_mem/1024))
-        echo "${memory}GB/$total_mem"
+        echo "${memory}GB"
       fi
       ;;
 
