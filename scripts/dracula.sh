@@ -131,7 +131,10 @@ main()
   # Status right
   tmux set-option -g status-right ""
 
+  counter=0
+
   for plugin in "${plugins[@]}"; do
+    counter=$((counter+1))
 
     if case $plugin in custom:*) true;; *) false;; esac; then
       script=${plugin#"custom:"}
