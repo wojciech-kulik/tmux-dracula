@@ -148,7 +148,7 @@ main()
       IFS=' ' read -r -a colors  <<< $(get_tmux_option "@dracula-cwd-colors" "dark_gray white")
       tmux set-option -g status-right-length 250
       script="#($current_dir/cwd.sh)"
-    
+
     elif [ $plugin = "fossil" ]; then
       IFS=' ' read -r -a colors  <<< $(get_tmux_option "@dracula-fossil-colors" "green dark_gray")
       tmux set-option -g status-right-length 250
@@ -233,11 +233,6 @@ main()
       IFS=' ' read -r -a colors <<< $(get_tmux_option "@dracula-weather-colors" "orange dark_gray")
       script="#($current_dir/weather_wrapper.sh $show_fahrenheit $show_location $fixed_location)"
 
-    elif [ $plugin = "ticker" ]; then
-      ticker_label=$(get_tmux_option "@dracula-ticker-label" "")
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@dracula-ticker-colors" "cyan dark_gray")
-      script="${ticker_label}#{ticker_stock}"
-
     elif [ $plugin = "time" ]; then
       IFS=' ' read -r -a colors <<< $(get_tmux_option "@dracula-time-colors" "dark_purple white")
       if [ -n "$time_format" ]; then
@@ -257,7 +252,8 @@ main()
       IFS=' ' read -r -a colors <<< $(get_tmux_option "@dracula-synchronize-panes-colors" "cyan dark_gray")
       script="#($current_dir/synchronize_panes.sh $show_synchronize_panes_label)"
     else
-      continue
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@dracula-$plugin-colors" "cyan dark_gray")
+      script="${plugin}"
     fi
 
     if $show_powerline; then
