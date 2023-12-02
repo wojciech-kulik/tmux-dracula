@@ -236,7 +236,7 @@ main()
     elif [ $plugin = "ticker" ]; then
       ticker_label=$(get_tmux_option "@dracula-ticker-label" "")
       IFS=' ' read -r -a colors <<<$(get_tmux_option "@dracula-ticker-colors" "cyan dark_gray")
-      script="#{ticker_label}#{ticker_stock}"
+      script="${ticker_label}#{ticker_stock}"
 
     elif [ $plugin = "time" ]; then
       IFS=' ' read -r -a colors <<< $(get_tmux_option "@dracula-time-colors" "dark_purple white")
