@@ -255,7 +255,7 @@ main()
       IFS=' ' read -r -a colors <<< $(get_tmux_option "@dracula-synchronize-panes-colors" "cyan dark_gray")
       script="#($current_dir/synchronize_panes.sh $show_synchronize_panes_label)"
     else
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@dracula-$plugin-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@dracula-$counter-colors" "cyan dark_gray")
       script="${plugin}"
     fi
 
